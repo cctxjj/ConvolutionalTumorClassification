@@ -203,10 +203,10 @@ class ModelPerformanceEvaluator:
         """
 
         evaluation = self.model.evaluate(self.ds_test)
-        self.recognizer.logger.log("Evaluation data: " + zip(self.model.metrics_names, evaluation))
-        if silent:
-            print(list(zip(self.model.metrics_names, evaluation)))
-
+        self.recognizer.logger.log("Evaluation data: " + str(tuple(zip(self.model.metrics_names, evaluation))))
+        if not silent:
+            print(tuple(zip(self.model.metrics_names, evaluation)))
+        self.recognizer.logger.log("\n-------\n")
         return evaluation
 
     def predict_specific_image(self,

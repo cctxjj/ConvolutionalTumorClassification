@@ -13,7 +13,7 @@ dataset_training = dataset_training.prefetch(buffer_size=tf.data.AUTOTUNE)
 
 kernel_size = (3, 3)
 pool_size = (2, 2)
-epochs = 10
+epochs = 20
 
 
 layers = [
@@ -45,11 +45,13 @@ layers = [
     tf.keras.layers.Dense(units=4, activation=tf.keras.activations.softmax)
 ]
 
+model_n = str(1)
+
 model = tumor_classification.ImageRecognizer(
     dataset_dir="dataset_2/Training",
-    model_save_folder="dataset_2/models",
+    model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
-    model_tag="model_1_d_3_conv_10_ep_" + str(epochs),
+    model_tag="model_" + model_n + "_d_3_conv_10_ep_" + str(epochs),
     batch_size=32,
     compile_information=[tf.keras.optimizers.Adam(), tf.keras.losses.SparseCategoricalCrossentropy(),
                          [tf.keras.metrics.categorical_accuracy]],
@@ -58,4 +60,5 @@ model = tumor_classification.ImageRecognizer(
 )
 
 model.train(True, epochs, True)
+
 model.evaluate_on_unknown_dataset("dataset_2/Testing")

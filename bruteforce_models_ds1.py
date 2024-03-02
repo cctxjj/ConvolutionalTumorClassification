@@ -42,7 +42,7 @@ def get_dense_layers(i):
     activation = tf.nn.relu
     if i == 0:
         return [
-            tf.keras.layers.Dense(units=64, activation=activation,)
+            tf.keras.layers.Dense(units=64, activation=activation, )
         ]
     elif i == 1:
         return [
@@ -134,19 +134,21 @@ for epochs_index in range(0, 2):
             model_tag = tag(model_n, len(dense_layers), len(conv_layers), epochs)
             if os.path.exists("models_data/" + model_tag + ".png"):
                 continue
+
             try:
                 recognizer = ImageRecognizer(
                     model_tag=model_tag,
                     dataset_dir='dataset_1/dataset_sorted',
                     batch_size=default_batch_size,
-                    model_save_folder='models/model_' + str(model_n),
+                    model_save_folder='dataset_1/models/model_' + str(model_n),
                     layers=[
                         tf.keras.layers.Rescaling(1. / 255, input_shape=(240, 240, 3)),
                         *conv_layers,
                         tf.keras.layers.Flatten(),
                         *dense_layers,
                         tf.keras.layers.Dense(2, activation='softmax')
-                    ]
+                    ],
+                    dataset_tag="dataset_1"
                 )
                 recognizer.train(epochs=epochs, save_model=True, plot_training_data=True)
                 recognizer.evaluate_on_unknown_dataset(silent=False)
@@ -158,7 +160,6 @@ for epochs_index in range(0, 2):
                 logger.Logger("dataset_1/models_data/logs.txt").log(
                     "\n!!!!!!!!!!")
                 continue
-
 """
 
 
