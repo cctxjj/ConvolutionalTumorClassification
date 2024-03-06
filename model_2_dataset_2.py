@@ -2,6 +2,8 @@ import tensorflow as tf
 
 import tumor_classification
 
+# difference: additional conv and dense layer
+
 kernel_size = (3, 3)
 pool_size = (2, 2)
 epochs = 10
@@ -17,6 +19,8 @@ layers = [
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
     tf.keras.layers.Conv2D(64, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
+    tf.keras.layers.Conv2D(128, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
+    tf.keras.layers.MaxPooling2D(pool_size=pool_size),
     tf.keras.layers.Conv2D(256, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
 
@@ -25,6 +29,7 @@ layers = [
 
     tf.keras.layers.Dense(units=64, activation=tf.keras.activations.relu),
     tf.keras.layers.Dense(units=128, activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(units=256, activation=tf.keras.activations.relu),
     tf.keras.layers.Dense(units=256, activation=tf.keras.activations.relu),
 
 
