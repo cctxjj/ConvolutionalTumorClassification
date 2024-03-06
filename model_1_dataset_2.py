@@ -8,6 +8,7 @@ epochs = 40
 
 normal_dropout_rate = 0.5
 spatial_dropout_rate = 0.5
+learning_rate = 0.001
 
 
 layers = [
@@ -50,12 +51,12 @@ layers = [
 model_n = str(2)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Training",
+    dataset_dir="dataset_2/Testing",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
-    model_tag="model_" + model_n + "_d_3_conv_10_ep_" + str(epochs),
+    model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),
     batch_size=32,
-    compile_information=[tf.keras.optimizers.SGD(), tf.keras.losses.SparseCategoricalCrossentropy(),
+    compile_information=[tf.keras.optimizers.SGD(learning_rate=learning_rate), tf.keras.losses.SparseCategoricalCrossentropy(),
                          [tf.keras.metrics.categorical_accuracy]],
     img_size=(512, 512),
     dataset_tag="dataset_2"
