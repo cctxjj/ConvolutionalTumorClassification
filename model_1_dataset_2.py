@@ -13,9 +13,11 @@ layers = [
 
     tf.keras.layers.Conv2D(16, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
+
     tf.keras.layers.Conv2D(64, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
-    tf.keras.layers.Conv2D(256, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
+
+    tf.keras.layers.Conv2D(128, kernel_size=kernel_size, activation=tf.keras.activations.relu, padding="same"),
     tf.keras.layers.MaxPooling2D(pool_size=pool_size),
 
 
@@ -29,10 +31,10 @@ layers = [
     tf.keras.layers.Dense(units=4, activation=tf.keras.activations.softmax)
 ]
 
-model_n = str(2)
+model_n = str(1)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Testing",
+    dataset_dir="dataset_2/Training",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
     model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),
