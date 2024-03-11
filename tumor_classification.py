@@ -50,7 +50,7 @@ class ImageRecognizer:
         self.batch_size = batch_size
         self.model_save_dir = model_save_folder + "/" + model_tag
 
-        self.logger = Logger(dataset_tag + "/models_data/logs.txt")
+        self.logger = Logger(dataset_tag + "/models_data/logs_2.txt")
 
         self.logger.log("\nLog for " + model_tag + "\n")
 

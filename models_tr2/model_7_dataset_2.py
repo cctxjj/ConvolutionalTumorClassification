@@ -2,13 +2,13 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: additional conv and dense layer
+# difference: batch-size set to 4
 
 kernel_size = (3, 3)
 pool_size = (2, 2)
 epochs = 20
 
-batch_size = 8
+batch_size = 4
 
 
 layers = [
@@ -32,16 +32,15 @@ layers = [
     tf.keras.layers.Dense(units=64, activation=tf.keras.activations.relu),
     tf.keras.layers.Dense(units=128, activation=tf.keras.activations.relu),
     tf.keras.layers.Dense(units=256, activation=tf.keras.activations.relu),
-    tf.keras.layers.Dense(units=256, activation=tf.keras.activations.relu),
 
 
     tf.keras.layers.Dense(units=4, activation=tf.keras.activations.softmax)
 ]
 
-model_n = str(2)
+model_n = str(7)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Training",
+    dataset_dir="../dataset_2/Training",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
     model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),

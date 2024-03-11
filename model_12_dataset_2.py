@@ -2,13 +2,13 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: batch-size set to 4
+# difference: batch-size set to 32
 
 kernel_size = (3, 3)
 pool_size = (2, 2)
 epochs = 20
 
-batch_size = 4
+batch_size = 32
 
 
 layers = [
@@ -37,10 +37,10 @@ layers = [
     tf.keras.layers.Dense(units=4, activation=tf.keras.activations.softmax)
 ]
 
-model_n = str(7)
+model_n = str(12)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Training",
+    dataset_dir="../dataset_2/Training",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
     model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),
