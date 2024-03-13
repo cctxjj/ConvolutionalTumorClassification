@@ -41,7 +41,7 @@ layers = [
 model_n = str(2)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Training",
+    dataset_dir="../dataset_2/Training",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
     model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),

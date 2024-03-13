@@ -2,16 +2,16 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: 2 dropout-layers placed inbetween convolutional and normal dense layers
+# difference: increased batch size, more epochs and lowered dropout rate
 
 kernel_size = (3, 3)
 pool_size = (2, 2)
-epochs = 20
+epochs = 30
 
-normal_dropout_rate = 0.2
-spatial_dropout_rate = 0.3
+normal_dropout_rate = 0.15
+spatial_dropout_rate = 0.15
 
-batch_size = 8
+batch_size = 16
 
 
 layers = [
@@ -49,10 +49,10 @@ layers = [
     tf.keras.layers.Dense(units=4, activation=tf.keras.activations.softmax)
 ]
 
-model_n = str(4)
+model_n = str(10)
 
 model = tumor_classification.ImageRecognizer(
-    dataset_dir="dataset_2/Training",
+    dataset_dir="../dataset_2/Training",
     model_save_folder="dataset_2/models/model_" + model_n,
     layers=layers,
     model_tag="model_" + model_n + "_dataset_2_ep_" + str(epochs),
