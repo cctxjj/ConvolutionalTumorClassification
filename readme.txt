@@ -1,9 +1,9 @@
 Dies ist der praktische Anteil meiner komplexen Leistung.
-Es handelt sich um ein Klassifizierungsprojekt für Hirntumore, bei welchen
-Convolutional Neural Networks auf verschiedensten Wegen Bilder auf Tumore untersuchen sollen.
+Es handelt sich um ein Klassifizierungsprojekt für Hirntumore, bei welchem
+Convolutional Neural Networks auf verschiedensten Wegen Bilder auf Tumore prüfen sollen.
 
 Hierfür wird hauptsächlich die Bibliothek Tensorflow genutzt, aber auch Matplotlib zur Datenvisualisierung und
-Numpy für den generellen Umgang mit den Daten sowie einige Weitere (siehe requirements.txt)
+Numpy für den generellen Umgang mit den Daten sowie einige Weitere (siehe requirements.txt).
 
 ----------
 
@@ -31,5 +31,5 @@ Vor der Nutzung dieser sollten sie zurück in den Überordner geführt werden, d
 innerhalb der Pythonfiles entstehen können.
 
 Anmerkung zu GitHub:
-Den Servern zuliebe finden sich weder die trainierten Modelle noch die Datensätze auf Github. Hier ist lediglich
+Den Servern zuliebe befinden sich weder die trainierten Modelle noch die Datensätze auf Github. Hier ist lediglich
 der Code und die Code-History aufzufinden. Ein Link zum Download des kompletten Projektes folgt.
