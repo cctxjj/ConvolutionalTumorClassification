@@ -2,8 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: added conv and dense layer
-
 kernel_size = (3, 3)
 pool_size = (2, 2)
 epochs = 20
@@ -54,6 +52,6 @@ model = tumor_classification.ImageRecognizer(
     dataset_tag="dataset_2"
 )
 
-model.train(True, epochs, True)
+model.train(True, epochs, False)
 
 model.evaluate_on_unknown_dataset("dataset_2/Testing")

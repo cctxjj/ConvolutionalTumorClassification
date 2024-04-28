@@ -2,7 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: 2 additional 512-neuron dense layers + dropout-layers inbetween + higher dropout rate
 
 kernel_size = (3, 3)
 pool_size = (2, 2)

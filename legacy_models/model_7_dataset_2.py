@@ -2,7 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: batch-size set to 4
 
 kernel_size = (3, 3)
 pool_size = (2, 2)

@@ -2,7 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: 2 dropout-layers placed inbetween convolutional and normal dense layers
 
 kernel_size = (3, 3)
 pool_size = (2, 2)

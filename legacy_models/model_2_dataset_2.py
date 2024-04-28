@@ -2,8 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: additional conv and dense layer
-
 kernel_size = (3, 3)
 pool_size = (2, 2)
 epochs = 20

@@ -2,7 +2,6 @@ import tensorflow as tf
 
 import tumor_classification
 
-# difference: SpatialDropout2D after last MaxPooling2D, normal dropout after every dense layer + higher dropout rates
 
 kernel_size = (3, 3)
 pool_size = (2, 2)

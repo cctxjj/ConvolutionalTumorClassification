@@ -5,15 +5,6 @@ from matplotlib import pyplot as plt
 from logger import Logger
 
 
-# testing:
-# processor = ImageProcessor("dataset_raw/set_s", "dataset_raw/img_labels.csv")
-# labels = processor.get_according_labels()
-# print(labels)
-# for index, image in enumerate(processor.get_translated_array()):
-#    plt.imshow(image)
-#    print(str(index) + " has label " + str(labels[index]))
-#    plt.show()
-
 class ImageRecognizer:
     def __init__(self,
                  dataset_dir: str,
@@ -212,7 +203,7 @@ class ModelPerformanceEvaluator:
     def predict_specific_image(self,
                                image_path):
         """
-        Predicts specific image
+        Predicts specific image based on path
         :param image_path:
         :return:
         """

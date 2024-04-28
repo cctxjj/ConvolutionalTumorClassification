@@ -1,5 +1,7 @@
 import tensorflow as tf
 import numpy as np
+import tumor_classification as tc
+
 
 model: tf.keras.Sequential = tf.keras.models.load_model('dataset_2/models/model_11/model_11_dataset_2_ep_20')
 
@@ -11,6 +13,7 @@ raw_pred = model.predict(image, verbose=0)
 print(raw_pred)
 result = np.argmax(raw_pred)
 print(result)
+
 
 
 

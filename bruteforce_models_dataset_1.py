@@ -6,14 +6,15 @@ import logger
 from tumor_classification import ImageRecognizer
 
 """
-This script is going to create models to evaluate a good configuration for the Tumor Classification. 
+This script is going to create models to evaluate a good configuration for the classification
+on the larger dataset. 
 
-We will try: 1, 3, 5, 7 and 10 Neuron layers added to 2, 3 and 5 Convolutional layers. Each model will
+We will try: 1, 3, 5, 7 and 10 neuron layers added to 2, 3 and 5 convolutional layers. Each model will
 be trained on 5, 10 and 20 epochs.
 Amount of models: 
 5 Dense layers * 4 Convolutional layer options * 3 different amounts of epochs each = 60 total models
 
-Best overall model will be trained on different other specs, e. g. different batch size
+Best overall model will be base of other CNNs for dataset_2.
 
 Model tag structure: 
 m_(model_number)_d_(n dense layers)_conv_(n convolutional layers)_e_(number of epochs trained on) 
@@ -21,6 +22,8 @@ m_(model_number)_d_(n dense layers)_conv_(n convolutional layers)_e_(number of e
 e.g. m_1_d_1_conv_0_e_5
 """
 
+# methods to easily access dense and convolutional layers as well as epochs and tags
+# -> simplify & structure model creation
 
 def tag(model_number, dense_layers_number, convolutional_layers_number, epochs_numbers):
     return "m_" + str(model_number) + "_d_" + str(dense_layers_number) + "_conv_" + str(
@@ -120,6 +123,7 @@ def get_convolutional_layers(i):
             tf.keras.layers.MaxPooling2D(pool_size=pool_size)
         ]
 
+# creation of models using ImageRecognizer-instances
 
 default_batch_size = 16
 model_n = 0
@@ -160,77 +164,3 @@ for epochs_index in range(0, 2):
                 logger.Logger("dataset_1/models_data/logs.txt").log(
                     "\n!!!!!!!!!!")
                 continue
-"""
-
-
-ncnn_1_model = ImageRecognizer(
-    dataset_dir='dataset_test',
-    model_save_folder='models/v1',
-    model_tag='v1_non_convolutional=1_hl=no_rescaling_model',
-    batch_size=8,
-    layers=[
-        tf.keras.layers.Rescaling(1. / 255, input_shape=(240, 240, 3)),
-        tf.keras.layers.Conv2D(filters=128, kernel_size=(3, 3), activation=tf.nn.relu),
-        tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(units=128, activation="relu"),
-        tf.keras.layers.Dense(units=128, activation="relu"),
-        tf.keras.layers.Dense(units=128, activation="relu"),
-        tf.keras.layers.Dense(units=2, activation="softmax")
-    ]
-)
-
-ncnn_1_model.train(plot_training_data=False, epochs=3, save_model=True)
-ncnn_1_model.evaluate_on_unknown_dataset(silent=True)
-
-# Model 1: 3 hidden layers, no filters, no additional rescaling to preprocess images
-
-ncnn_2_model = ImageRecognizer(
-    dataset_dir='dataset_sorted',
-    model_save_folder='models/v1',
-    model_tag='v1 non-convolutional 3-hl no rescaling model',
-    batch_size=8,
-    layers=[
-        tf.keras.layers.Flatten(input_shape=(240, 240, 3)),
-        tf.keras.layers.Dense(units=128, activation="relu"),
-        tf.keras.layers.Dense(units=256, activation="relu"),
-        tf.keras.layers.Dense(units=512, activation="relu"),
-        tf.keras.layers.Dense(units=2, activation="softmax")
-    ]
-)
-
-ncnn_2_model.train(plot_training_data=True, epochs=10, save_model=True)
-ncnn_2_model.evaluate_on_unknown_dataset(silent=False)
-
-ncnn_3_model = ImageRecognizer(
-    dataset_dir='dataset_sorted',
-    model_save_folder='models/v1',
-    model_tag='v1 non-convolutional 1-3 no rescaling model',
-    batch_size=8,
-    layers=[
-        tf.keras.layers.Flatten(input_shape=(240, 240, 3)),
-        tf.keras.layers.Dense(units=128, activation="relu"),
-        tf.keras.layers.Dense(units=256, activation="relu"),
-        tf.keras.layers.Dense(units=512, activation="relu"),
-        tf.keras.layers.Dense(units=2, activation="softmax")
-    ]
-)
-
-ncnn_3_model.train(plot_training_data=True, epochs=10, save_model=True)
-ncnn_3_model.evaluate_on_unknown_dataset(silent=False)
-model = tf.keras.models.Sequential([
-    tf.keras.layers.RandomCrop(200, 200, input_shape=(240, 240, 3)),
-    tf.keras.layers.Rescaling(1. / 255),
-    tf.keras.layers.Conv2D(64, 3, activation='relu'),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(128, 3, activation='relu'),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dense(512, activation='relu'),
-    tf.keras.layers.Dense(2000, activation='relu'),
-    tf.keras.layers.Dense(5000, activation='relu'),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dense(2, activation='softmax')
-])
-"""
